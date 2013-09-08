@@ -17,10 +17,16 @@ def txtCombiner(p):
     main = os.listdir(p)
     for item in main:
         path = p + sep + item
-        if ".txt" in item:
-            f = open(path,"r")
-            txtList.append(f.readlines)
-            f.close
-    print(txtList)
+        if ".txt" in item and item != "combinedText.txt":  #so if run again, it wont duplicate
+            f = open(path,"r")                             #combined text
+            txtList.append(f.readlines())
+            txtList.append(["\n","\n","~~~~~~~~~~NEW TXT~~~~~~~~~~","\n" "\n"])
+            f.close()
 
+    f = open(p+sep+"combinedText.txt", "w")
+    for line in txtList:
+        for string in line:
+            f.write(string)
+    f.close()
+    
 #txtCombiner("C://Users//kevincurtin//Desktop")
